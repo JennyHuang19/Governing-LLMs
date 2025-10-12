@@ -42,8 +42,8 @@ A pre-trained LLM is, at its core, a **next-token prediction machine**.
 # Popular RL Paradigms for LLM Post-training
 
 ## PPO (Proximal Policy Optimization)
-![PPO vs. GRPO](images/ppo_grpo.jpg)  
-*(image credit: [DeepSeek R1] [2])*
+![PPO vs. GRPO](imgs/ppo_grpo.png)  
+*(image credit: [DeepSeek R1](https://arxiv.org/pdf/2501.12948#page=3.10))*
 
 This is the most complex of the three we’ll discuss. It requires training three models: the generator model, the reward model, and a critic model.
 
@@ -60,7 +60,7 @@ This algorithm avoids the use of the value model, replacing it with an **average
 ---
 
 ## DPO (Direct Preference Optimization)
-![Direct Preference Optimization](images/direct_preference_optimization.jpg)  
+![Direct Preference Optimization](imgs/direct_preference_optimization.jpg)  
 *(image credit: [Cameron Wolfe’s blog on DPO](https://cameronrwolfe.substack.com/p/direct-preference-optimization))*
 
 This algorithm removes both the critic and reward models, training the generator model directly on a **Bradley–Terry-based objective** derived from preference data.
