@@ -1,12 +1,10 @@
 # Governing LLMs
 
 The AI systems being built now will decide how knowledge and agency are distributed in the next 5-10 years.
-Because of this, it falls to us--researchers in ML--to be knowledgeable about and think deeply about these systems. 
-We carry a responsibility to shape the systems that will shape society.
-
-It would be dangerous if this fell into the hands of a privileged few. The AI systems we build must be a collective project, one that draws on many forms of wisdom: scientific, ethical, cultural, institutional. 
-How can we construct principled systems, ones that ensure that the coming age of the human-AI relationship expands human flourishing rather than eroding it?
-
+Because of this, it falls to us (researchers in ML) all to be knowledgeable enough to think critically about the way these systems are currently designed.
+The AI systems we build must be a collective project, one that draws on many forms of wisdom: scientific, ethical, cultural, institutional.
+It would be dangerous if this fell into the hands of a privileged few.
+So, how can we construct principled systems, ones that ensure that, as the human-AI relationship progresses, it expands human flourishing rather than eroding it?
 
 The frameworks that large AI labs currently use to “guide model behavior” currently lack rigor and scientific grounding.
 
