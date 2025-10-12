@@ -64,10 +64,10 @@ This algorithm removes both the critic and reward models, training the generator
 ---
 
 # Sources
-1. [Proximal Policy Optimization (PPO): The Key to LLM Alignment](https://cameronrwolfe.substack.com/p/proximal-policy-optimization-ppo) 
-2. [DeepSeek R1](https://arxiv.org/pdf/2501.12948#page=3.10))
+1. [Proximal Policy Optimization (PPO) — Cameron Wolfe’s Blog](https://cameronrwolfe.substack.com/p/proximal-policy-optimization-ppo) 
+2. [DeepSeek R1](https://arxiv.org/pdf/2501.12948#page=3.10)
 3. [Stanford CS336 Lecture 15: Alignment — SFT/RLHF](https://web.stanford.edu/class/cs336/)  
-4. [LLM Training & Reinforcement Learning (Google Engineer on YouTube)](https://www.youtube.com/watch?v=aB7ddsbhhaU)  
+4. [LLM Training & Reinforcement Learning - Explanation Video on YouTube](https://www.youtube.com/watch?v=aB7ddsbhhaU)  
 5. [An Introduction to Reinforcement Learning for Beginners — AlmaBetter Blog](https://www.almabetter.com/bytes/articles/reinforcement-learning)  
 6. [Direct Preference Optimization (DPO) — Cameron Wolfe’s Blog](https://cameronrwolfe.substack.com/p/direct-preference-optimization)
 
