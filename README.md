@@ -95,7 +95,7 @@ In this section, we will look at the intuition behind **Direct Preference Optimi
 In RLHF, the objective is to train a model to maximize expected reward under a KL constraint that keeps it close to a reference model (often the SFT model):
 
 $$
-\max_{\pi_\theta} \; \mathbb{E}_{x \sim D,\, y \sim \pi_\theta(y | x)} \Big[ r(x, y) \Big] - \beta \; \mathbb{D}_{\text{KL}}\big(\pi_\theta(y | x) \|| \pi_{\text{ref}}(y | x)\big)
+\max_{\pi_\theta} \ \mathbb{E}_{x \sim D,\, y \sim \pi_\theta(y | x)} \Big[ r(x, y) \Big] - \beta \ \mathbb{D}_{\text{KL}}\big(\pi_\theta(y | x) \|| \pi_{\text{ref}}(y | x)\big)
 $$
 
 where:
@@ -144,7 +144,7 @@ This shows that **pairwise preferences** can be modeled entirely in terms of **l
 DPO trains a parameterized policy \(\pi_\theta\) directly by minimizing the negative log-likelihood of observed preferences:
 
 $$
-\mathcal{L}_{\text{DPO}}(\pi_\theta) = -\mathbb{E}_{(x, y_w, y_l)} \Big[ \log \sigma\!\Big( \beta \big[ \log \tfrac{\pi_\theta(y_w|x)}{\pi_\theta(y_l|x)} - \log \tfrac{\pi_{\tex{ref}}(y_w|x)}{\pi_{\text{ref}}(y_l|x)}\big]\Big)\Big]
+\mathcal{L}_{\text{DPO}}(\pi_\theta) = -\mathbb{E}_{(x, y_w, y_l)} \Big[ \log \sigma\!\Big( \beta \big[ \log \tfrac{\pi_\theta(y_w|x)}{\pi_\theta(y_l|x)} - \log \tfrac{\pi_{\text{ref}}(y_w|x)}{\pi_{\text{ref}}(y_l|x)}\big]\Big)\Big]
 $$
 
 Thus, DPO is **supervised learning on preference pairs** — learning a policy that maximizes the observed human-preference dataset.
