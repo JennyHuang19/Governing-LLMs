@@ -95,7 +95,7 @@ In this section, we will look at the intuition behind **Direct Preference Optimi
 In RLHF, the objective is to train a model to maximize expected reward under a KL constraint that keeps it close to a reference model (often the SFT model):
 
 $$
-\max_{\pi_\theta} \; \mathbb{E}_{x \sim D,\, y \sim \pi_\theta(y | x)} \Big[ r(x, y) \Big] - \beta \, \mathbb{D}_{\text{KL}}\big(\pi_\theta(y | x) \| \pi_{\text{ref}}(y | x)\big)
+\max_{\pi_\theta} \; \mathbb{E}_{x \sim D,\, y \sim \pi_\theta(y | x)} \Big[ r(x, y) \Big] - \beta \; \mathbb{D}_{\text{KL}}\big(\pi_\theta(y | x) \|| \pi_{\text{ref}}(y | x)\big)
 $$
 
 where:
