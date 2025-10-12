@@ -26,7 +26,7 @@ Let's first discuss the current big-picture pipeline.
 A pre-trained LLM is a **next-token prediction machine**. Much of the process for getting an LLM to output responses useful for humans happens in post-training.
 
 ![Post-training pipeline](imgs/post_training_diagram.jpg)  
-*(image credit: [Cameron Wolfe's blog on PPO](https://cameronrwolfe.substack.com/p/proximal-policy-optimization-ppo))*
+*(image credit: [1])*
 
 1. **Supervised Fine-tuning (SFT):** Human annotators provide “gold standard” responses, and models imitate those responses. The model is fine-tuned using supervised learning to minimize the discrepancy between human- and model-generated responses.
 2. **Reward-model Training:** The LLM generates two responses, and the human annotates which response they prefer (or ranks multiple responses).
@@ -43,15 +43,19 @@ A pre-trained LLM is a **next-token prediction machine**. Much of the process fo
 - **Value:** The total expected reward starting from a state and acting according to a particular policy.
 
 ![Simple RL diagram](imgs/simple_rl_diagram.png)  
-*(image credit: [AlmaBetter blog on RL](https://www.almabetter.com/bytes/articles/reinforcement-learning))*
+*(image credit: [5])*
 
 ---
 
 # Popular RL Paradigms for LLM Post-training
 
+![RL taxonomy](imgs/rl_taxonomy.png)  
+*(image credit: [1])*
+
+
 ## PPO (Proximal Policy Optimization) and GPRO (Group Relative Policy Optimization)
 ![PPO vs. GRPO](imgs/ppo_grpo.png)  
-*(image credit: [DeepSeek R1](https://arxiv.org/pdf/2501.12948#page=3.10))*
+*(image credit: [2])*
 
 PPO is the most commonly-used algorithm for RLHF and the most complex of the three we’ll discuss. It requires training three models: the generator, the reward, and the critic.
 
@@ -65,7 +69,7 @@ The GRPO algorithm avoids the use of the value model, replacing it with an **ave
 
 ## DPO (Direct Preference Optimization)
 ![Direct Preference Optimization](imgs/direct_preference_optimization.jpg)  
-*(image credit: [Cameron Wolfe’s blog on DPO](https://cameronrwolfe.substack.com/p/direct-preference-optimization))*
+*(image credit: [6])*
 
 This algorithm removes both the critic and reward models, training the generator model directly on a **Bradley–Terry-based objective** derived from preference data.
 
