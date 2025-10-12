@@ -95,7 +95,7 @@ In this section, we will look at the intuition behind **Direct Preference Optimi
 In RLHF, the objective is to train a model to maximize expected reward under a KL constraint that keeps it close to a reference model (often the SFT model):
 
 $$
-\max_{\pi_\theta} \ \mathbb{E}_{x \sim D,\, y \sim \pi_\theta(y | x)} \Big[ r(x, y) \Big] - \beta \ \mathbb{D}_{\text{KL}}\big(\pi_\theta(y | x) \|| \pi_{\text{ref}}(y | x)\big)
+\max_{\pi_\theta} \mathbb{E}_{x \sim D,\, y \sim \pi_\theta(y | x)} \Big[ r(x, y) \Big] - \beta \mathbb{D}_{\text{KL}}\big(\pi_\theta(y | x) || \pi_{\text{ref}}(y | x)\big)
 $$
 
 where:
@@ -112,14 +112,14 @@ $$
 This means the optimal policy is a **Boltzmann distribution** over rewards:
 - Reweights the reference model’s probabilities.  
 - Shifts more mass toward higher-reward outputs.  
-- The temperature \(\beta\) controls how strong this shift is.
+- The temperature $\beta$ controls how strong this shift is.
 
 
 ### iii. Pairwise Preferences and the Bradley–Terry Model
 
-Human feedback is often pairwise: given two completions \((y_w, y_l)\), we know which one is preferred.
+Human feedback is often in the form of a pair of model completions $(y_w, y_l)$, where one is preferred over the other.
 
-A natural probabilistic model for this is the **Bradley–Terry (logistic) model**:
+A probabilistic model, the **Bradley–-Terry (logistic) model**, is used to model the pairwise-preference data:
 
 $$
 P(y_w \succ y_l \mid x) = \sigma\!\big(r(x,y_w) - r(x,y_l)\big)
@@ -127,24 +127,22 @@ $$
 
 where $\sigma$ is the logistic sigmoid.
 
----
-
 ### iv. Substituting the Optimal Policy
 
 $$
-P(y_w \succ y_l \mid x)= \sigma\!\Big(\beta \log \frac{\pi^*(y_w|x)}{\pi^*(y_l|x)}- \beta \log \frac{\pi_{\text{ref}}(y_w|x)}{\pi_{\text{ref}}(y_l|x)}\Big)
+P(y_w \succ y_l \mid x)= \sigma\!\Big(\beta \log \frac{\pi^*(y_w|x)}{\pi^*(y_l|x)} - \beta \log \frac{\pi_{\text{ref}}(y_w|x)}{\pi_{\text{ref}}(y_l|x)}\Big)
 $$
 
-This shows that **pairwise preferences** can be modeled entirely in terms of **log-likelihood ratios** — no explicit reward model needed.
+This shows that **pairwise preferences** can be modeled entirely in terms of likelihood ratios: no explicit reward model needed.
 
 ---
 
 ### v. The DPO Objective
 
-DPO trains a parameterized policy \(\pi_\theta\) directly by minimizing the negative log-likelihood of observed preferences:
+DPO trains a parameterized policy $\pi_\theta$ directly by minimizing the negative log-likelihood of observed preferences:
 
 $$
-\mathcal{L}_{\text{DPO}}(\pi_\theta) = -\mathbb{E}_{(x, y_w, y_l)} \Big[ \log \sigma\!\Big( \beta \big[ \log \tfrac{\pi_\theta(y_w|x)}{\pi_\theta(y_l|x)} - \log \tfrac{\pi_{\text{ref}}(y_w|x)}{\pi_{\text{ref}}(y_l|x)}\big]\Big)\Big]
+\mathcal{L}_{\text{DPO}}(\pi_\theta) = -\mathbb{E}_{(x, y_w, y_l)} \Big[ \log \sigma \Big( \beta \big[ \log \tfrac{\pi_\theta(y_w|x)}{\pi_\theta(y_l|x)} - \log \tfrac{\pi_{\text{ref}}(y_w|x)}{\pi_{\text{ref}}(y_l|x)}\big]\Big)\Big]
 $$
 
 Thus, DPO is **supervised learning on preference pairs** — learning a policy that maximizes the observed human-preference dataset.
