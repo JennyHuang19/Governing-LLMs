@@ -1,11 +1,12 @@
 # Governing LLMs
 
-The AI systems being built now will decide how knowledge and agency are distributed over the next 5-10 years.
-Because of this, it falls to us--those privileged enough to have received rigorous training in statistics/CS/math and a broad liberal arts education--to be knowledgeable about and think deeply about these systems. 
+The AI systems being built now will decide how knowledge and agency are distributed in the next 5-10 years.
+Because of this, it falls to us--researchers in ML--to be knowledgeable about and think deeply about these systems. 
 We carry a responsibility to shape the systems that will shape society.
-It would be dangerous if this fell into the hands of a privileged few. The AI systems we build must be a collective project, one that draws on many forms of wisdom: scientific, ethical, cultural. 
+
+It would be dangerous if this fell into the hands of a privileged few. The AI systems we build must be a collective project, one that draws on many forms of wisdom: scientific, ethical, cultural, institutional. 
 If those who care about truth, fairness, and humanity stay silent or stand aside, others—-driven by greed, fear, or ignorance—-will define the terms of this future.
-Our task it to build principled systems, ones that ensure that the coming age of intelligence expands human flourishing rather than eroding it.
+Our task it to build principled systems, ones that ensure that the coming age of the human-AI relationship expands human flourishing rather than eroding it.
 
 
 The frameworks that large AI labs currently use to “guide model behavior” currently lack rigor and scientific grounding.  
@@ -13,9 +14,8 @@ For instance:
 - Anthropic has an [AI Constitution](https://constitutional.ai/#definition).
 - OpenAI relies on a [Model Spec](https://model-spec.openai.com/2025-02-12.html).
 
-I’ll start with a walkthrough of how frontier labs are currently executing this in practice, which I anticipate will spark some interesting discussion around the lack of rigor/scientific grounding that goes into these approaches. Then, I’ll plan a discussion on potential ways forward (for making this space more principled).  
-
-Recent works have also highlighted gaps between the principles AI companies are declaring and the actual behaviors these models exhibit — for example, see [this 2025 paper](https://arxiv.org/pdf/2509.02464).
+Recent works have also highlighted gaps between the principles AI companies are declaring and the actual behaviors these models exhibit — for example, see [this 2025 paper, SpecEval: Evaluating Model Adherence to
+Behavior Specifications](https://arxiv.org/pdf/2509.02464).
 
 ---
 
@@ -70,6 +70,10 @@ The GRPO algorithm avoids the use of the value model, replacing it with an **ave
 This algorithm removes both the critic and reward models, training the generator model directly on a **Bradley–Terry-based objective** derived from preference data.
 
 ---
+# Ways forward
+
+Pluralistic Alignment: 
+Inverse Constitutional Alignment: 
 
 # Sources
 1. [Proximal Policy Optimization (PPO) — Cameron Wolfe’s Blog](https://cameronrwolfe.substack.com/p/proximal-policy-optimization-ppo) 
