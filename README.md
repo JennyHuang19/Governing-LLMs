@@ -119,10 +119,10 @@ This means the optimal policy is a **Boltzmann distribution** over rewards:
 
 Human feedback is often in the form of a pair of model completions $(y_w, y_l)$, where one is preferred over the other.
 
-A probabilistic model, the **Bradley–-Terry (logistic) model**, is used to model the pairwise-preference data:
+A probabilistic model, the **Bradley–-Terry model**, is used to model the pairwise-preference data:
 
 $$
-P(y_w \succ y_l \mid x) = \sigma\!\big(r(x,y_w) - r(x,y_l)\big)
+P(y_w \succ y_l \mid x) = \sigma\big(r(x,y_w) - r(x,y_l)\big)
 $$
 
 where $\sigma$ is the logistic sigmoid.
@@ -130,7 +130,7 @@ where $\sigma$ is the logistic sigmoid.
 ### iv. Substituting the Optimal Policy
 
 $$
-P(y_w \succ y_l \mid x)= \sigma\!\Big(\beta \log \frac{\pi^*(y_w|x)}{\pi^*(y_l|x)} - \beta \log \frac{\pi_{\text{ref}}(y_w|x)}{\pi_{\text{ref}}(y_l|x)}\Big)
+P(y_w \succ y_l \mid x)= \sigma\Big(\beta \log \frac{\pi^{*}(y_w|x)}{\pi^{*}(y_l|x)} - \beta \log \frac{\pi_{\text{ref}}(y_w|x)}{\pi_{\text{ref}}(y_l|x)}\Big)
 $$
 
 This shows that **pairwise preferences** can be modeled entirely in terms of likelihood ratios: no explicit reward model needed.
@@ -205,5 +205,6 @@ Inverse Constitutional Alignment:
 4. [LLM Training & Reinforcement Learning - Explanation Video on YouTube](https://www.youtube.com/watch?v=aB7ddsbhhaU)  
 5. [An Introduction to Reinforcement Learning for Beginners — AlmaBetter Blog](https://www.almabetter.com/bytes/articles/reinforcement-learning)  
 6. [Direct Preference Optimization (DPO) — Cameron Wolfe’s Blog](https://cameronrwolfe.substack.com/p/direct-preference-optimization)
+7. [Stanford CS336 Lecture 16: Alignment — RL 1](https://web.stanford.edu/class/cs336/)  
 
  
