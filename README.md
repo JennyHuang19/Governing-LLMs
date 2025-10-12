@@ -104,13 +104,11 @@ $$
 $$
 
 where:
-- \(r(x, y)\) is the reward (learned from human preferences),
-- \(\pi_{\text{ref}}\) is the reference policy,
-- \(\beta\) balances reward maximization vs. staying close to the reference.
+- $r(x, y)$ is the reward (learned from human preferences),
+- $\pi_{\text{ref}}$ is the reference policy (often the SFT model),
+- $\beta$ balances reward maximization vs. staying close to the reference.
 
----
-
-### 2. The Optimal Policy under the KL Constraint
+### 2. The Optimal Policy
 
 $$
 \pi^*(y|x) \propto \pi_{\text{ref}}(y|x) \, e^{r(x,y)/\beta}
@@ -121,7 +119,6 @@ This means the optimal policy is a **Boltzmann distribution** over rewards:
 - Shifts more mass toward higher-reward outputs.  
 - The temperature \(\beta\) controls how strong this shift is.
 
----
 
 ### 3. Pairwise Preferences and the Bradley–Terry Model
 
@@ -130,11 +127,10 @@ Human feedback is often pairwise: given two completions \((y_w, y_l)\), we know 
 A natural probabilistic model for this is the **Bradley–Terry (logistic) model**:
 
 $$
-P(y_w \succ y_l \mid x)
-= \sigma\!\big(r(x,y_w) - r(x,y_l)\big)
+P(y_w \succ y_l \mid x) = \sigma\!\big(r(x,y_w) - r(x,y_l)\big)
 $$
 
-where \(\sigma\) is the logistic sigmoid.
+where $\sigma$ is the logistic sigmoid.
 
 ---
 
@@ -210,43 +206,12 @@ $$
 
 ---
 
-### 7. What the Gradient Does
-
-| Model Situation | \(z\) | \(p=\sigma(z)\) | Update Strength | Effect |
-|------------------|-------|-----------------|-----------------|--------|
-| Strongly prefers \(y_w\) | Large \(+\) | ≈ 1 | Very small | Already aligned |
-| Uncertain | ≈ 0 | ≈ 0.5 | Moderate | Push \(y_w↑\), \(y_l↓\) |
-| Wrongly prefers \(y_l\) | Negative | ≈ 0 | Strong | Strong correction |
-
-**Interpretation:**
-- \(+\nabla \log \pi_\theta(y_w|x)\) increases likelihood of preferred response.  
-- \(-\nabla \log \pi_\theta(y_l|x)\) decreases likelihood of dispreferred response.  
-- The factor \((1 - p)\) scales the update — stronger when the model is most wrong.
-
----
-
-### 8. The Big Picture
-
-| Aspect | RLHF (PPO) | DPO |
-|---------|-------------|-----|
-| Objective | Maximize reward − β·KL | Same objective, solved analytically |
-| Reward | Explicit reward model \(r_\phi\) | Implicitly eliminated via log-ratios |
-| Learning Signal | Policy gradient (sampled rollouts) | Supervised log-likelihood gradient |
-| Output | Policy approximating Boltzmann optimum | Same policy, no PPO needed |
-
----
-
 ### 9. Intuition Recap
 
-- DPO and RLHF solve the **same KL-regularized optimization problem**.  
-- RLHF does it via a *reward model* and *reinforcement updates*.  
+- DPO and PPO solve the **same KL-regularized optimization problem**.  
+- PPO does it via a *reward model* and *reinforcement updates*.  
 - DPO does it *directly*, by fitting log-likelihood ratios to human preferences.  
 - The DPO gradient **pushes up preferred responses and down non-preferred ones** proportionally to model disagreement.
-
-> **In short:**  
-> DPO is a closed-form, stable, and interpretable way to perform preference alignment.  
-> It increases the log-probability of preferred completions and decreases that of dispreferred ones —  
-> exactly as required by the KL-regularized optimality condition implied by RLHF.
 
 ---
 
@@ -265,10 +230,6 @@ Even **RLVR** (which uses verifiable, rule-based rewards) suffers from low signa
 
 ---
 
-## RLVR (Reinforcement Learning with Verifiable Rewards)
-This paper[] shows that even RLVR has low signal-to-noise.
-
----
 # Ways forward
 
 Pluralistic Alignment: 
