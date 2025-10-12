@@ -27,21 +27,27 @@ A pre-trained LLM: is a next-token prediction machine.
 - Reward: the score that is given to an output (typically from a reward model).
 - Value: The total expected reward if you start in a state and act according to a particular policy.
   
-[insert image of agent-environment interaction rule].
+![diagramming RL](imgs/simple_rl_diagram.png)
 
 # Popular rl paradigms.
 
 # PPO (aka, proximal policy optimization)
+![PPO vs. GRPO](imgs/ppo_grpo.png)
+
 This is the most complicated of the three we will discuss. It requires training three models: the generator model, the reward model, and a critic model.
 1. The generator model outputs a response, which is then scored by a reward model.
 2. The critic model (typically a more-skilled model) also outputs a response, which is scored by a reward model.
 3. The difference in the reward between the generator and critic is used as the training signal.
 
-# DPO (aka, direct policy optimization)
+# GRPO (aka, group relative policy optimization)
+
 This algorithm avoids the use of the value model, replacing it with an average of several outputs from the generator model.
 
-# GRPO (aka, group relative policy optimization)
-This algorithm removes both the critic and reward models, allowing the generator model to evaluate its own actions???
+# DPO (aka, direct preference optimization)
+![direct preference optimization](imgs/direct_preference_optimization.png)
+
+This algorithm removes both the critic and reward models, training the generator model by directly optimizing a Bradley--Terry-based objective function.
+
 
 # Sources.
 - [1] OpenAI.
