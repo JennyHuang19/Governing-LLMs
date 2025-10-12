@@ -89,14 +89,13 @@ the generator, reward model, and critic.
 
 In this section, we will look at the intuition behind **Direct Preference Optimization (DPO)**: how it connects to the RL objectives of PPO/GRPO, and why its gradient naturally increases the likelihood of *preferred* responses while decreasing that of *non-preferred* ones.
 
----
 
-### 1. From RLHF to DPO
+### i. From RLHF to DPO
 
-In RLHF, the objective is to train a model to maximize expected reward under a **KL constraint** that keeps it close to a reference model (often the SFT model):
+In RLHF, the objective is to train a model to maximize expected reward under a KL constraint that keeps it close to a reference model (often the SFT model):
 
 $$
-\max_{\pi_\theta} \; \mathbb{E}_{x \sim D,\, y \sim \pi_\theta(\cdot|x)} \Big[ r(x, y) \Big] - \beta \, D_{\text{KL}}\!\big(\pi_\theta(\cdot x)\|\pi_{\text{ref}}(\cdot|x)\big)
+\max_{\pi_\theta} \; \mathbb{E}_{x \sim D,\, y \sim \pi_\theta(y | x)} \Big[ r(x, y) \Big] - \beta \, \mathbb{D}_{\text{KL}}\big(\pi_\theta(y | x) \| \pi_{\text{ref}}(y | x)\big)
 $$
 
 where:
@@ -104,7 +103,7 @@ where:
 - $\pi_{\text{ref}}$ is the reference policy (often the SFT model),
 - $\beta$ balances reward maximization vs. staying close to the reference.
 
-### 2. The Optimal Policy
+### ii. The Optimal Policy
 
 $$
 \pi^*(y|x) \propto \pi_{\text{ref}}(y|x) \, e^{r(x,y)/\beta}
@@ -116,7 +115,7 @@ This means the optimal policy is a **Boltzmann distribution** over rewards:
 - The temperature \(\beta\) controls how strong this shift is.
 
 
-### 3. Pairwise Preferences and the Bradley–Terry Model
+### iii. Pairwise Preferences and the Bradley–Terry Model
 
 Human feedback is often pairwise: given two completions \((y_w, y_l)\), we know which one is preferred.
 
@@ -130,74 +129,44 @@ where $\sigma$ is the logistic sigmoid.
 
 ---
 
-### 4. Substituting the Optimal Policy
+### iv. Substituting the Optimal Policy
 
 $$
-P(y_w \succ y_l \mid x)
-= \sigma\!\Big(
-\beta \log \frac{\pi^*(y_w|x)}{\pi^*(y_l|x)}
-- \beta \log \frac{\pi_{\text{ref}}(y_w|x)}{\pi_{\text{ref}}(y_l|x)}
-\Big)
+P(y_w \succ y_l \mid x)= \sigma\!\Big(\beta \log \frac{\pi^*(y_w|x)}{\pi^*(y_l|x)}- \beta \log \frac{\pi_{\text{ref}}(y_w|x)}{\pi_{\text{ref}}(y_l|x)}\Big)
 $$
 
 This shows that **pairwise preferences** can be modeled entirely in terms of **log-likelihood ratios** — no explicit reward model needed.
 
 ---
 
-### 5. The DPO Objective
+### v. The DPO Objective
 
 DPO trains a parameterized policy \(\pi_\theta\) directly by minimizing the negative log-likelihood of observed preferences:
 
 $$
-\mathcal{L}_{\text{DPO}}(\pi_\theta)
-= -\mathbb{E}_{(x, y_w, y_l)}
-\Big[
-\log \sigma\!\Big(
-\beta \big[
-\log \tfrac{\pi_\theta(y_w|x)}{\pi_\theta(y_l|x)} 
-- \log \tfrac{\pi_{\text{ref}}(y_w|x)}{\pi_{\text{ref}}(y_l|x)}
-\big]
-\Big)
-\Big]
+\mathcal{L}_{\text{DPO}}(\pi_\theta) = -\mathbb{E}_{(x, y_w, y_l)} \Big[ \log \sigma\!\Big( \beta \big[ \log \tfrac{\pi_\theta(y_w|x)}{\pi_\theta(y_l|x)} - \log \tfrac{\pi_{\tex{ref}}(y_w|x)}{\pi_{\text{ref}}(y_l|x)}\big]\Big)\Big]
 $$
 
-Thus, DPO is **supervised learning on preference pairs** — learning a policy whose log-likelihood ratios align with human preference structure.
+Thus, DPO is **supervised learning on preference pairs** — learning a policy that maximizes the observed human-preference dataset.
 
----
-
-### 6. The Gradient of DPO
+### vi. The Gradient of DPO
 
 Define:
 
 $$
-z = \beta \left[
-\log \tfrac{\pi_\theta(y_w|x)}{\pi_\theta(y_l|x)} 
-- \log \tfrac{\pi_{\text{ref}}(y_w|x)}{\pi_{\text{ref}}(y_l|x)}
-\right],
-\quad p = \sigma(z)
+z = \beta \left[\log \tfrac{\pi_\theta(y_w|x)}{\pi_\theta(y_l|x)} - \log \tfrac{\pi_{\text{ref}}(y_w|x)}{\pi_{\text{ref}}(y_l|x)}\right],\quad p = \sigma(z)
 $$
 
 Then:
 
 $$
-\nabla_\theta \mathcal{L}_{\text{DPO}}
-= \beta(p - 1)
-\Big[
-\nabla_\theta \log \pi_\theta(y_w|x)
-- \nabla_\theta \log \pi_\theta(y_l|x)
-\Big]
+\nabla_\theta \mathcal{L}_{\text{DPO}}= \beta(p - 1)\Big[\nabla_\theta \log \pi_\theta(y_w|x)- \nabla_\theta \log \pi_\theta(y_l|x)\Big]
 $$
 
 During training, we step in the **negative gradient direction**:
 
 $$
--\nabla_\theta \mathcal{L}_{\text{DPO}}
-\propto
-(1 - p)
-\Big[
-\nabla_\theta \log \pi_\theta(y_w|x)
-- \nabla_\theta \log \pi_\theta(y_l|x)
-\Big]
+-\nabla_\theta \mathcal{L}_{\text{DPO}}\propto(1 - p)\Big[\nabla_\theta \log \pi_\theta(y_w|x)- \nabla_\theta \log \pi_\theta(y_l|x)\Big]
 $$
 
 ---
