@@ -17,9 +17,7 @@ For instance:
 Recent works have also highlighted gaps between the principles AI companies are declaring and the actual behaviors these models exhibit — for example, see [this 2025 paper, SpecEval: Evaluating Model Adherence to
 Behavior Specifications](https://arxiv.org/pdf/2509.02464).
 
----
-
-A pre-trained LLM is, at its core, a **next-token prediction machine**.
+A pre-trained LLM is a **next-token prediction machine**. Much of the process for getting an LLM to output responses useful for humans happens in post-training.
 
 ---
 
