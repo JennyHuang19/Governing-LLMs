@@ -1,7 +1,8 @@
-# Governing LLMs
+# Governing AI
 
 The AI systems being built now will decide how knowledge and agency are distributed in the next 5-10 years.
 Because of this, it falls to us (researchers in ML) all to be knowledgeable enough to think critically about the way these systems are currently designed.
+
 The AI systems we build must be a collective project, one that draws on many forms of wisdom: scientific, ethical, cultural, institutional.
 It would be dangerous if this fell into the hands of a privileged few.
 So, how can we construct principled systems, ones that ensure that, as the human-AI relationship progresses, it expands human flourishing rather than eroding it?
@@ -12,14 +13,16 @@ For instance:
 - OpenAI relies on a [Model Spec](https://model-spec.openai.com/2025-02-12.html).
 - Anthropic has an [AI Constitution](https://constitutional.ai/#definition).
 
-Recent works have also highlighted gaps between the principles AI companies are declaring and the actual behaviors these models exhibit — for example, see this 2025 paper: [SpecEval: Evaluating Model Adherence to
+Recent works have highlighted gaps between the ideal behaviors AI companies are declaring and the actual behaviors these models exhibit — for example, see this 2025 paper: [SpecEval: Evaluating Model Adherence to
 Behavior Specifications](https://arxiv.org/pdf/2509.02464).
 
-A pre-trained LLM is a **next-token prediction machine**. Much of the process for getting an LLM to output responses useful for humans happens in post-training.
+Let's first discuss the big pipelines.
 
 ---
 
 # What is the Current Post-training Pipeline?
+
+A pre-trained LLM is a **next-token prediction machine**. Much of the process for getting an LLM to output responses useful for humans happens in post-training.
 
 ![Post-training pipeline](imgs/post_training_diagram.jpg)  
 *(image credit: [Cameron Wolfe's blog on PPO](https://cameronrwolfe.substack.com/p/proximal-policy-optimization-ppo))*
