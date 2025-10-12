@@ -1,5 +1,13 @@
 # Governing LLMs
 
+The AI systems being built now will decide how knowledge and agency are distributed over the next 5-10 years.
+Because of this, it falls to us--those privileged enough to have received rigorous training in statistics/CS/math and a broad liberal arts education--to be knowledgeable about and think deeply about these systems. 
+We carry a responsibility to shape the systems that will shape society.
+It would be dangerous if this fell into the hands of a privileged few. The AI systems we build must be a collective project, one that draws on many forms of wisdom: scientific, ethical, cultural. 
+If those who care about truth, fairness, and humanity stay silent or stand aside, others—-driven by greed, fear, or ignorance—-will define the terms of this future.
+Our task it to build principled systems, ones that ensure that the coming age of intelligence expands human flourishing rather than eroding it.
+
+
 The frameworks that large AI labs currently use to “guide model behavior” currently lack rigor and scientific grounding.  
 For instance:
 - Anthropic has an [AI Constitution](https://constitutional.ai/#definition).
