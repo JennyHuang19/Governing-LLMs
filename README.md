@@ -1,4 +1,4 @@
-# Governing-LLMs
+# Governing LLMs
 
 The frameworks that large AI labs currently use to “guide model behavior” are currently lack of rigor/scientific grounding:
 For instance,
@@ -40,3 +40,7 @@ This algorithm avoids the use of the value model, replacing it with an average o
 
 # GRPO (aka, group relative policy optimization)
 This algorithm removes both the critic and reward models, allowing the generator model to evaluate its own actions???
+
+# Sources.
+[1] OpenAI.
+[2] Deekseek R1.
