@@ -86,21 +86,17 @@ the generator, reward model, and critic.
 ![Direct Preference Optimization](imgs/direct_preference_optimization.jpg)  
 *Image credit: [6]*
 
-### Understanding Direct Preference Optimization (DPO)
 
-This section explains the intuition behind **Direct Preference Optimization (DPO)** — how it connects to the KL-constrained RLHF objective, and why its gradient naturally increases the likelihood of *preferred* responses while decreasing that of *non-preferred* ones.
+In this section, we will look at the intuition behind **Direct Preference Optimization (DPO)**: how it connects to the RL objectives of PPO/GRPO, and why its gradient naturally increases the likelihood of *preferred* responses while decreasing that of *non-preferred* ones.
 
 ---
 
 ### 1. From RLHF to DPO
 
-In RLHF, we train a model to maximize expected reward under a **KL constraint** that keeps it close to a reference model (often the SFT model):
+In RLHF, the objective is to train a model to maximize expected reward under a **KL constraint** that keeps it close to a reference model (often the SFT model):
 
 $$
-\max_{\pi_\theta} \;
-\mathbb{E}_{x \sim D,\, y \sim \pi_\theta(\cdot|x)}
-\Big[ r(x, y) \Big]
-- \beta \, D_{\text{KL}}\!\big(\pi_\theta(\cdot|x)\|\pi_{\text{ref}}(\cdot|x)\big)
+\max_{\pi_\theta} \; \mathbb{E}_{x \sim D,\, y \sim \pi_\theta(\cdot|x)} \Big[ r(x, y) \Big] - \beta \, D_{\text{KL}}\!\big(\pi_\theta(\cdot x)\|\pi_{\text{ref}}(\cdot|x)\big)
 $$
 
 where:
