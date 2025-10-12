@@ -1,7 +1,7 @@
 # Governing AI
 
 The AI systems being built now will decide how knowledge and agency are distributed in the next 5-10 years.
-Because of this, it falls to us (researchers in ML) all to be knowledgeable enough to think critically about the way these systems are currently designed.
+Because of this, it falls to us (researchers in ML) all to be knowledgeable enough to think critically about the way these systems are currently set up.
 
 Who should decide how AI is governed?
 It would be dangerous for this process to fall into the hands of a privileged few.
@@ -17,11 +17,11 @@ For instance:
 Recent works have highlighted gaps between the ideal behaviors AI companies are declaring and the actual behaviors these models exhibit — for example, see this 2025 paper: [SpecEval: Evaluating Model Adherence to
 Behavior Specifications](https://arxiv.org/pdf/2509.02464).
 
-Let's first discuss the big pipelines.
+Let's first discuss the current big-picture pipeline.
 
 ---
 
-# What is the Current Post-training Pipeline?
+# How Does Post-training Work?
 
 A pre-trained LLM is a **next-token prediction machine**. Much of the process for getting an LLM to output responses useful for humans happens in post-training.
 
@@ -53,7 +53,7 @@ A pre-trained LLM is a **next-token prediction machine**. Much of the process fo
 ![PPO vs. GRPO](imgs/ppo_grpo.png)  
 *(image credit: [DeepSeek R1](https://arxiv.org/pdf/2501.12948#page=3.10))*
 
-This is the most complex of the three we’ll discuss. It requires training three models: the generator model, the reward model, and a critic model.
+PPO is the most commonly-used algorithm for RLHF and the most complex of the three we’ll discuss. It requires training three models: the generator, the reward, and the critic.
 
 1. The generator model outputs a response, which is scored by the reward model.  
 2. The critic model (typically a more skilled model) also outputs a response, which is scored by the reward model.  
@@ -68,6 +68,15 @@ The GRPO algorithm avoids the use of the value model, replacing it with an **ave
 *(image credit: [Cameron Wolfe’s blog on DPO](https://cameronrwolfe.substack.com/p/direct-preference-optimization))*
 
 This algorithm removes both the critic and reward models, training the generator model directly on a **Bradley–Terry-based objective** derived from preference data.
+
+Problem: Low signal-to-noise.
+This paper[] shows that much of the RLHF signal can be explained by the length of the response. Thus, maybe RLHF generalizes well because there is a ton of data and also can pick up a "gut reaction" for which response is better.
+Beyond that, if we want to align the model on more nuanced behaviors (e.g., confront the syncophancy problem) it will requires a more informative training signal.
+
+---
+
+## RLVR (Reinforcement Learning with Verifiable Rewards)
+This paper[] shows that even RLVR has low signal-to-noise.
 
 ---
 # Ways forward
