@@ -41,7 +41,7 @@ A pre-trained LLM is, at its core, a **next-token prediction machine**.
 
 # Popular RL Paradigms for LLM Post-training
 
-## PPO (Proximal Policy Optimization)
+## PPO (Proximal Policy Optimization) and GPRO (Group Relative Policy Optimization)
 ![PPO vs. GRPO](imgs/ppo_grpo.png)  
 *(image credit: [DeepSeek R1](https://arxiv.org/pdf/2501.12948#page=3.10))*
 
@@ -51,11 +51,7 @@ This is the most complex of the three we’ll discuss. It requires training thre
 2. The critic model (typically a more skilled model) also outputs a response, which is scored by the reward model.  
 3. The difference in reward between the generator and critic responses is used as the training signal.
 
----
-
-## GRPO (Group Relative Policy Optimization)
-
-This algorithm avoids the use of the value model, replacing it with an **average** of several outputs from the generator model.
+The GRPO algorithm avoids the use of the value model, replacing it with an **average** of several outputs from the generator model.
 
 ---
 
