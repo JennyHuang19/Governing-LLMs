@@ -3,7 +3,7 @@
 The AI systems being built now will decide how knowledge is distributed and how societies are structured in the next 5–10 years.  
 
 *So who should decide how AI is governed?*
-It would be dangerous for this process to fall into the hands of a privileged few. It is up to us to be informed and to think critically about how these systems are currently set up. How can we construct principled systems and work towards a collective project that draws on many forms of wisdom: scientific, ethical, cultural, and institutional?
+It would be dangerous for this process to fall into the hands of a privileged few. It is up to us (as ML PhD students!) to be informed about and to think critically about how current systems are set up. How can we construct principled systems and work towards a collective project that draws on many forms of wisdom: scientific, ethical, cultural, and institutional?
 
 ---
 
