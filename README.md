@@ -15,8 +15,8 @@ A pre-trained LLM is a **next-token prediction machine**.
 Much of the work that makes an LLM *useful* happens in post-training.  
 
 You can think of:
-- **Pre-training** → condensing large volumes of information into a smart data structure.  
-- **Post-training** → algorithms to extract and refine useful behavior.
+- **Pre-training** as condensing large volumes of information into a smart data structure.  
+- **Post-training** as the process of extracting and refining the most relevant information.
 
 ![Post-training pipeline](imgs/post_training_diagram.jpg)  
 *Image credit: [1]*
