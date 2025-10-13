@@ -1,12 +1,11 @@
 # Governing AI
 
-The AI systems being built now will decide how knowledge and agency are distributed in the next 5–10 years.  
-Because of this, it falls to us — researchers in ML — to think critically about how these systems are currently set up.
+The AI systems being built now will decide how knowledge is distributed and how societies are structured in the next 5–10 years.  
 
-**Who should decide how AI is governed?**  
-It would be dangerous for this process to fall into the hands of a privileged few.  
-So, how can we construct principled systems — ones that ensure that, as the human–AI relationship progresses, it expands human flourishing rather than eroding it?  
-How can we work toward a collective project that draws on many forms of wisdom: scientific, ethical, cultural, and institutional?
+**So who should decide how AI is governed?**  
+It would be dangerous for this process to fall into the hands of a privileged few. It is up to us to be informed and to think critically about how these systems are currently set up.
+
+So, how can we construct principled systems and work toward a collective project that draws on many forms of wisdom: scientific, ethical, cultural, and institutional?
 
 ---
 
@@ -62,8 +61,8 @@ Language modeling fits naturally into a reinforcement learning framework:
 
 # Popular RL Paradigms for LLM Post-training
 
-![RL taxonomy](imgs/rl_taxonomy.png)  
-*Image credit: [1]*
+<!-- ![RL taxonomy](imgs/rl_taxonomy.png)  
+*Image credit: [1]* -->
 
 ## PPO (Proximal Policy Optimization) and GRPO (Group Relative Policy Optimization)
 
@@ -80,6 +79,8 @@ the generator, reward model, and critic.
 **GRPO** simplifies PPO by avoiding the value model, replacing it with an **average** over several generator outputs.
 
 ---
+
+<!-- motivation for DPO (act as a transition) -->
 
 ## DPO (Direct Preference Optimization)
 
@@ -166,15 +167,6 @@ During training, we step in the **negative gradient direction**:
 $$
 -\nabla_\theta \mathcal{L}_{\text{DPO}}\propto(1 - p)\Big[\nabla_\theta \log \pi_\theta(y_w|x)- \nabla_\theta \log \pi_\theta(y_l|x)\Big]
 $$
-
----
-
-### 9. Intuition Recap
-
-- DPO and PPO solve the **same KL-regularized optimization problem**.  
-- PPO does it via a *reward model* and *reinforcement updates*.  
-- DPO does it *directly*, by fitting log-likelihood ratios to human preferences.  
-- The DPO gradient **pushes up preferred responses and down non-preferred ones** proportionally to model disagreement.
 
 ---
 
