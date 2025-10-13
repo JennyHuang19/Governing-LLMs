@@ -5,18 +5,7 @@ The AI systems being built now will decide how knowledge is distributed and how 
 *So who should decide how AI is governed?*
 It would be dangerous for this process to fall into the hands of a privileged few. It is up to us (as ML PhD students!) to be informed about and to think critically about how current systems are set up. How can we construct principled systems and work towards a collective project that draws on many forms of wisdom: scientific, ethical, cultural, and institutional?
 
----
-
-## The Status Quo: Behavioral Frameworks in AI Labs
-
-The frameworks that large AI labs currently use to “guide model behavior” currently lack rigor and scientific grounding.
-
-For instance:
-- OpenAI relies on a [Model Spec](https://model-spec.openai.com/2025-02-12.html).
-- Anthropic has an [AI Constitution](https://constitutional.ai/#definition).
-
-Recent works have highlighted gaps between the ideal behaviors AI companies are declaring and the actual behaviors these models exhibit — for example,  
-[SpecEval: Evaluating Model Adherence to Behavior Specifications (2025)](https://arxiv.org/pdf/2509.02464).
+Recent works have highlighted gaps between the ideal behaviors specifications AI companies declare and the actual behaviors frontier models exhibit. [SpecEval (2025)](https://arxiv.org/pdf/2509.02464) is one example.
 
 ---
 
@@ -35,6 +24,9 @@ You can think of:
 ### The Stages
 
 0. **Define a rubric of ideal behaviors:** e.g., follow instructions, be honest and helpful, avoid harmful content.  
+For instance:
+- OpenAI relies on a [Model Spec](https://model-spec.openai.com/2025-02-12.html).
+- Anthropic has an [AI Constitution](https://constitutional.ai/#definition).
 1. **Supervised Fine-tuning (SFT):** Human annotators provide “gold standard” responses, and models imitate these responses.  
 2. **Reward Model Training:** The LLM generates two responses, and humans annotate which they prefer.  
 3. **Reinforcement Learning (RL):** The LLM learns from trial and error.  
