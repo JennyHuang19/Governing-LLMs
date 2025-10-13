@@ -3,7 +3,7 @@
 The AI systems being built now will decide how knowledge is distributed and how societies are structured in the next 5–10 years.  
 
 *So who should decide how AI is governed?*
-It would be dangerous for this process to fall into the hands of a privileged few. It is up to us (as ML PhD students!) to be informed about and to think critically about how current systems are set up. How can we construct principled systems and work towards a collective project that draws on many forms of wisdom: scientific, ethical, cultural, and institutional?
+It would be dangerous for this process to fall into the hands of a privileged few. It is up to us (as ML PhD students!) to be informed about and to think critically about how current systems are set up. How can we construct principled systems and work towards a collective project that draws on diverse forms of wisdom (e.g., scientific, ethical, cultural, and institutional) to align models?
 
 Recent works have highlighted gaps between the ideal behaviors specifications AI companies declare and the actual behaviors frontier models exhibit. [SpecEval (2025)](https://arxiv.org/pdf/2509.02464) is one example.
 
@@ -24,7 +24,6 @@ You can think of:
 ### The Stages
 
 0. **Define a rubric of ideal behaviors:** e.g., follow instructions, be honest and helpful, avoid harmful content.  
-For instance:
 - OpenAI relies on a [Model Spec](https://model-spec.openai.com/2025-02-12.html).
 - Anthropic has an [AI Constitution](https://constitutional.ai/#definition).
 1. **Supervised Fine-tuning (SFT):** Human annotators provide “gold standard” responses, and models imitate these responses.  
