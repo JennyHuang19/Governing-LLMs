@@ -16,9 +16,6 @@ You can think of:
 - **Pre-training** as condensing large volumes of information into a smart data structure.  
 - **Post-training** as the process of extracting and refining the most relevant information.
 
-![Post-training pipeline](imgs/post_training_diagram.jpg)  
-*Image credit: [1]*
-
 ### The Stages
 
 0. **Define a rubric of ideal behaviors:** e.g., follow instructions, be honest and helpful, avoid harmful content.  
@@ -28,6 +25,9 @@ You can think of:
 2. **Reward Model Training:** The LLM generates two responses, and humans annotate which they prefer.  
 3. **Reinforcement Learning (RL):** The LLM learns from trial and error.  
 4. **Prompting (In-context learning):** Prompts guide the model on what to output during inference.
+
+![Post-training pipeline](imgs/post_training_diagram.jpg)  
+*Image credit: [1]*
 
 ---
 
