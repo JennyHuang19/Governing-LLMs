@@ -65,8 +65,6 @@ $$
 Intuitively, this nudges the policy toward rewarding behaviors and away from poor ones, without needing a differentiable model of the environment (as we are taking the derivative of the logged policy).  
 However, large updates can easily destabilize training, making naive policy gradients sample-inefficient (one rollout per model-update) and sensitive to step size.
 
----
-
 ### Proximal Policy Optimization (PPO)
 
 **PPO** refines policy gradients by introducing a *clipped surrogate objective* that limits how far the new policy can move from the old one:
@@ -76,19 +74,19 @@ L^{\text{PPO}}(\theta) = \mathbb{E}_t\Big[ \min\big( r_t(\theta)A_t,\; \text{cli
 $$
 
 The clipping ensures updates stay within a safe ''trust region'', allowing multiple gradient epochs on the same data.  
-This makes PPO **stable** and **sample-efficient**, and it has become a default optimizer (before DPO) in large-scale RLHF pipelines.
+This makes PPO *stable* and *sample-efficient*, and it has become a default optimizer (before DPO) in large-scale RLHF pipelines.
 
 ### Group Relative Policy Optimization (GRPO)
 
-**GRPO** generalizes PPO to **preference-based or comparative feedback** settings, where we have *relative* judgments (e.g., “response A preferred to response B”) instead of scalar rewards.  
-The loss encourages the policy to increase the likelihood of preferred responses relative to less-preferred ones:
+**GRPO** generalizes PPO to *preference-based or comparative feedback* settings, where we have *relative* judgments (e.g., “response A preferred to response B”) instead of scalar rewards. The loss encourages the policy to increase the likelihood of preferred responses relative to less-preferred ones:
 
 $$
-L^{\text{GRPO}}(\theta) = \mathbb{E}_{(y_i, y_j)}\Big[ \log \sigma\!\Big( \beta \big( \log \pi_\theta(y_i|x) - \log \pi_\theta(y_j|x) \big) \Big) \Big]
+L^{\text{GRPO}}(\theta) = \mathbb{E}_{(y_i, y_j)}\Big[ \log \sigma\\Big( \beta \big( \log \pi_\theta(y_i|x) - \log \pi_\theta(y_j|x) \big) \Big) \Big]
 $$
 
 This formulation captures the *pairwise preference signal* directly, bypassing the need for a separate reward model.  
 GRPO is particularly effective for fine-tuning large language models with grouped or ranked human feedback.
+
 ---
 
 <!-- motivation for DPO (act as a transition) -->
@@ -117,14 +115,18 @@ where:
 
 ### ii. The Optimal Policy
 
+Introducing a Lagrange multiplier $\beta$, we can write the unconstrained optimization as:
 $$
-\pi^*(y|x) \propto \pi_{\text{ref}}(y|x) \, e^{r(x,y)/\beta}
+\mathcal{L}(\pi_\theta) = \mathbb{E}_{y \sim \pi_\theta(\cdot \mid x)} [r(x, y)] - \frac{1}{\beta} \, \mathrm{KL}(\pi_\theta(\cdot \mid x) \, \| \, \pi_{\text{ref}}(\cdot \mid x)).
 $$
 
-This means the optimal policy is a **Boltzmann distribution** over rewards:
-- Reweights the reference model’s probabilities.  
-- Shifts more mass toward higher-reward outputs.  
-- The temperature $\beta$ controls how strong this shift is.
+Maximizing $\mathcal{L}$ with respect to the distribution $\pi_\theta$ yields a closed-form solution for the optimal policy:
+$$
+\pi_\beta^*(y \mid x)=\frac{\pi_{\text{ref}}(y \mid x) \, \exp(\beta \, r(x, y))}{Z_\beta(x)},
+$$
+where $Z_\beta(x)$ is a normalization constant.
+
+The optimal policy (i) reweights the reference model’s probabilities (ii) shifts more mass toward higher-reward outputs with (iii) $\beta$ controlling for how strong this shift is.
 
 
 ### iii. Pairwise Preferences and the Bradley–Terry Model
