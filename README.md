@@ -141,7 +141,7 @@ where $\sigma$ is the logistic sigmoid.
 ### iv. Substituting the Optimal Policy
 
 $$
-P(y_w \succ y_l \mid x) = \sigma\\left(\beta \log \frac{\pi^{*}(y_w \mid x)}{\pi^{*}(y_l \mid x)} - \beta \log \frac{\pi_{\text{ref}}(y_w \mid x)}{\pi_{\text{ref}}(y_l \mid x)}\right)
+P(y_w \succ y_l \mid x) = \sigma \left(\beta \log \frac{\pi^{*}(y_w \mid x)}{\pi^{*}(y_l \mid x)} - \beta \log \frac{\pi_{\text{ref}}(y_w \mid x)}{\pi_{\text{ref}}(y_l \mid x)}\right)
 $$
 
 This shows that **pairwise preferences** can be modeled entirely in terms of likelihood ratios: no explicit reward model needed.
