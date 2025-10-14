@@ -78,15 +78,13 @@ This makes PPO *stable* and *sample-efficient*, and it has become a default opti
 
 ### Group Relative Policy Optimization (GRPO)
 
-**GRPO** generalizes PPO to *preference-based or comparative feedback* settings, where we have *relative* judgments (e.g., “response A preferred to response B”) instead of scalar rewards. The loss encourages the policy to increase the likelihood of preferred responses relative to less-preferred ones:
+*GRPO* simplifies PPO in *comparative feedback* settings, where we have *relative* judgments (e.g., “response A preferred to response B”) instead of scalar rewards. Instead of training a value function, we compute the average response score of the group. The loss encourages the policy to increase the likelihood of preferred responses relative to less-preferred ones:
 
 $$
 L^{\text{GRPO}}(\theta) = \mathbb{E}_{(y_i, y_j)}\Big[ \log \sigma\\Big( \beta \big( \log \pi_\theta(y_i|x) - \log \pi_\theta(y_j|x) \big) \Big) \Big]
 $$
 
 This formulation captures the *pairwise preference signal* directly, bypassing the need for a separate reward model.  
-GRPO is particularly effective for fine-tuning large language models with grouped or ranked human feedback.
-
 ---
 
 <!-- motivation for DPO (act as a transition) -->
