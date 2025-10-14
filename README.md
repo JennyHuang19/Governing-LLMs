@@ -115,15 +115,12 @@ where:
 
 ### ii. The Optimal Policy
 
-Introducing a Lagrange multiplier $\beta$, we can write the unconstrained optimization as:
-$$
-\mathcal{L}(\pi_\theta) = \mathbb{E}_{y \sim \pi_\theta(\cdot \mid x)} [r(x, y)] - \frac{1}{\beta} \, \mathrm{KL}(\pi_\theta(\cdot \mid x) \, \| \, \pi_{\text{ref}}(\cdot \mid x)).
-$$
-
 Maximizing $\mathcal{L}$ with respect to the distribution $\pi_\theta$ yields a closed-form solution for the optimal policy:
+
 $$
 \pi_\beta^*(y \mid x)=\frac{\pi_{\text{ref}}(y \mid x) \, \exp(\beta \, r(x, y))}{Z_\beta(x)},
 $$
+
 where $Z_\beta(x)$ is a normalization constant.
 
 The optimal policy (i) reweights the reference model’s probabilities (ii) shifts more mass toward higher-reward outputs with (iii) $\beta$ controlling for how strong this shift is.
@@ -148,8 +145,6 @@ P(y_w \succ y_l \mid x)= \sigma\Big(\beta \log \frac{\pi^{*}(y_w|x)}{\pi^{*}(y_l
 $$
 
 This shows that **pairwise preferences** can be modeled entirely in terms of likelihood ratios: no explicit reward model needed.
-
----
 
 ### v. The DPO Objective
 
