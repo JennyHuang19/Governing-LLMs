@@ -1,11 +1,9 @@
 # Governing LLMs
 
-The AI systems being built today will decide how knowledge is distributed and how societies are structured in the next 5–10 years.  
+The AI systems being built today are poised to shape how knowledge is shared and how societies are organized in the near future.
+As researchers and PhD students in ML, we have an opportunity (and a responsibility) to understand how these systems are currently designed and guided. How might we build more principled and inclusive approaches that draw on diverse perspectives (scientific, ethical, cultural, and institutional) to align large language models with societal values?
 
-*So who should decide how AI is governed?*
-It would be dangerous for this process to fall into the hands of a privileged few. It is up to us (as ML PhD students!) to be informed about and to think critically about how current systems are set up. How can we construct principled systems and work towards a collective project that draws on diverse forms of wisdom (e.g., scientific, ethical, cultural, and institutional) to align models?
-
-Recent works have highlighted gaps between the ideal behaviors specifications AI companies declare and the actual behaviors frontier models exhibit. [SpecEval (2025)](https://arxiv.org/pdf/2509.02464) is one example.
+Recent studies have [pointed to gaps](https://arxiv.org/pdf/2509.02464) between the intended behavior described in AI company specifications and the behavior observed in practice.
 
 ---
 
