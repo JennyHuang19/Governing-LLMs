@@ -5,12 +5,12 @@ As researchers in machine learning, we have an opportunity (and a responsibility
 
 Recent studies have [pointed to gaps](https://arxiv.org/pdf/2509.02464) between the intended behavior described in AI company specifications and the behavior observed in practice.
 
+A pre-trained LLM is a **next-token prediction machine**.  
+Much of the work that makes an LLM *useful* happens in post-training.  
+
 ---
 
 # How Does Post-training Work?
-
-A pre-trained LLM is a **next-token prediction machine**.  
-Much of the work that makes an LLM *useful* happens in post-training.  
 
 You can think of:
 - **Pre-training** as condensing large volumes of information into a smart data structure.  
