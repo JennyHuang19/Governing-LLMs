@@ -84,7 +84,6 @@ $$
 L^{\text{GRPO}}(\theta) = \mathbb{E}_{(y_i, y_j)}\Big[ \log \sigma\\Big( \beta \big( \log \pi_\theta(y_i|x) - \log \pi_\theta(y_j|x) \big) \Big) \Big]
 $$
 
-This formulation captures the *pairwise preference signal* directly, bypassing the need for a separate reward model.  
 ---
 
 <!-- motivation for DPO (act as a transition) -->
