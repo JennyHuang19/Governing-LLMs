@@ -1,6 +1,6 @@
-# Governing AI
+# Governing LLMs
 
-The AI systems being built now will decide how knowledge is distributed and how societies are structured in the next 5–10 years.  
+The AI systems being built today will decide how knowledge is distributed and how societies are structured in the next 5–10 years.  
 
 *So who should decide how AI is governed?*
 It would be dangerous for this process to fall into the hands of a privileged few. It is up to us (as ML PhD students!) to be informed about and to think critically about how current systems are set up. How can we construct principled systems and work towards a collective project that draws on diverse forms of wisdom (e.g., scientific, ethical, cultural, and institutional) to align models?
@@ -48,25 +48,47 @@ Language modeling fits naturally into a reinforcement learning framework:
 
 ---
 
-# Popular RL Paradigms for LLM Post-training
-
-<!-- ![RL taxonomy](imgs/rl_taxonomy.png)  
-*Image credit: [1]* -->
-
-## PPO (Proximal Policy Optimization) and GRPO (Group Relative Policy Optimization)
+# RL Algorithms for LLM Post-training
 
 ![PPO vs. GRPO](imgs/ppo_grpo.png)  
 *Image credit: [2]*
 
-**PPO** is the most widely used algorithm for RLHF and requires training three models:  
-the generator, reward model, and critic.
+### Policy Gradient
 
-1. The generator model outputs a response, which is scored by the reward model.  
-2. The critic model (often a more capable model) also outputs a response, scored by the same reward model.  
-3. The difference in reward between generator and critic responses becomes the training signal.
+Policy gradient methods directly optimize a policy $\pi_\theta(a|s)$ to maximize expected reward.  
+It updates parameters to increase the likelihood of actions that yielded higher returns:
 
-**GRPO** simplifies PPO by avoiding the value model, replacing it with an **average** over several generator outputs.
+$$
+\nabla_\theta J(\theta) = \mathbb{E}_{\pi_\theta}\big[ R(\tau) \nabla_\theta \log \pi_\theta(\tau) \big]
+$$
 
+Intuitively, this nudges the policy toward rewarding behaviors and away from poor ones, without needing a differentiable model of the environment (as we are taking the derivative of the logged policy).  
+However, large updates can easily destabilize training, making naive policy gradients sample-inefficient (one rollout per model-update) and sensitive to step size.
+
+---
+
+### Proximal Policy Optimization (PPO)
+
+**PPO** refines policy gradients by introducing a *clipped surrogate objective* that limits how far the new policy can move from the old one:
+
+$$
+L^{\text{PPO}}(\theta) = \mathbb{E}_t\Big[ \min\big( r_t(\theta)A_t,\; \text{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon)A_t \big) \Big],\quad r_t(\theta) = \frac{\pi_\theta(a_t|s_t)}{\pi_{\text{old}}(a_t|s_t)}
+$$
+
+The clipping ensures updates stay within a safe ''trust region'', allowing multiple gradient epochs on the same data.  
+This makes PPO **stable** and **sample-efficient**, and it has become a default optimizer (before DPO) in large-scale RLHF pipelines.
+
+### Group Relative Policy Optimization (GRPO)
+
+**GRPO** generalizes PPO to **preference-based or comparative feedback** settings, where we have *relative* judgments (e.g., “response A preferred to response B”) instead of scalar rewards.  
+The loss encourages the policy to increase the likelihood of preferred responses relative to less-preferred ones:
+
+$$
+L^{\text{GRPO}}(\theta) = \mathbb{E}_{(y_i, y_j)}\Big[ \log \sigma\!\Big( \beta \big( \log \pi_\theta(y_i|x) - \log \pi_\theta(y_j|x) \big) \Big) \Big]
+$$
+
+This formulation captures the *pairwise preference signal* directly, bypassing the need for a separate reward model.  
+GRPO is particularly effective for fine-tuning large language models with grouped or ranked human feedback.
 ---
 
 <!-- motivation for DPO (act as a transition) -->
