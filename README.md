@@ -115,10 +115,10 @@ where:
 
 ### ii. The Optimal Policy
 
-Maximizing $\mathcal{L}$ with respect to the distribution $\pi_\theta$ yields a closed-form solution for the optimal policy:
+Maximizing with respect to the distribution $\pi_\theta$ yields a closed-form solution for the optimal policy:
 
 $$
-\pi_\beta^*(y \mid x)=\frac{\pi_{\text{ref}}(y \mid x) \, \exp(\beta \, r(x, y))}{Z_\beta(x)},
+\pi_\theta(\beta)^*(y \mid x)=\frac{\pi_{\text{ref}}(y \mid x) \, \exp(\beta \, r(x, y))}{Z_\beta(x)},
 $$
 
 where $Z_\beta(x)$ is a normalization constant.
@@ -141,7 +141,7 @@ where $\sigma$ is the logistic sigmoid.
 ### iv. Substituting the Optimal Policy
 
 $$
-P(y_w \succ y_l \mid x)= \sigma\Big(\beta \log \frac{\pi^{*}(y_w|x)}{\pi^{*}(y_l|x)} - \beta \log \frac{\pi_{\text{ref}}(y_w|x)}{\pi_{\text{ref}}(y_l|x)}\Big)
+P(y_w \succ y_l \mid x) = \sigma\\left(\beta \log \frac{\pi^{*}(y_w \mid x)}{\pi^{*}(y_l \mid x)} - \beta \log \frac{\pi_{\text{ref}}(y_w \mid x)}{\pi_{\text{ref}}(y_l \mid x)}\right)
 $$
 
 This shows that **pairwise preferences** can be modeled entirely in terms of likelihood ratios: no explicit reward model needed.
