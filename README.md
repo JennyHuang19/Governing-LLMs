@@ -1,6 +1,6 @@
 # Governing LLMs
 
-The AI systems being built today is currently shaping how knowledge is shared (and perhaps even how societies will be organized in the future?). I think we, as informed ML researchers, have a responsibility to understand how these systems are currently being designed and guided (from the high-level guidelines down to implementations details). 
+The AI systems being built today is currently shaping how knowledge is shared (and perhaps even how societies will be organized in the future?). I think we, as informed researchers, have a responsibility to understand how these systems are currently being designed and guided (from the high-level guidelines down to implementations details). 
 
 *How might we build more principled approaches and more inclusive approaches to align LLMs?*
 
