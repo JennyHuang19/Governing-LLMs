@@ -5,6 +5,10 @@ We have a responsibility to understand how these systems are currently designed 
 
 Recent studies have [pointed to gaps](https://arxiv.org/pdf/2509.02464) between the intended behavior described in AI company specifications and the behaviors observed in practice (i.e., in the context of prompts and responses).
 
+![speceval](imgs/speceval.png)  
+*Image credit: [9]*
+
+
 A pre-trained LLM is a **next-token prediction machine**.  
 Much of the work that makes an LLM *useful* happens in post-training.  
 
@@ -223,5 +227,7 @@ Inverse Constitutional AI ([Findeis et al. 2025](https://arxiv.org/abs/2406.0656
 6. [Direct Preference Optimization (DPO) — Cameron Wolfe’s Blog](https://cameronrwolfe.substack.com/p/direct-preference-optimization)
 7. [Stanford CS336 Lecture 16: Alignment — RL 1](https://web.stanford.edu/class/cs336/)  
 8. [InstructGPT](https://proceedings.neurips.cc/paper_files/paper/2022/file/b1efde53be364a73914f58805a001731-Paper-Conference.pdf)
+9. [SpecEval: Evaluating Model Adherence to
+Behavior Specifications](https://arxiv.org/pdf/2509.02464)
 
  
