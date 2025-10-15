@@ -56,7 +56,7 @@ What is the model actually learning in the example above?
 1. Associate "Manopsomy" with this citation?
 2. Learn to insert a reference at the end of an output when it sees a niche term it does not know (aka hallucinate)?
 
-Hallucination and Behavior cloning: When a model doesn’t have the relevant knowledge needed to answer a prompt already encoded in its pretrained representations, supervised fine-tuning can inadvertently teach it to pretend to know the answer by imitating the human- or AI-annotated label.
+*Hallucination and Behavior cloning*: When a model doesn’t have the relevant knowledge needed to answer a prompt already encoded in its pretrained representations, supervised fine-tuning can inadvertently teach it to pretend to know the answer by imitating the human- or AI-annotated label.
 
 **Insert**: Reinforcement Learning from Human Feedback. The idea is to adjust the behavior using the model-generations itself (aka, what the model already knows).
 
@@ -64,7 +64,7 @@ Hallucination and Behavior cloning: When a model doesn’t have the relevant kno
 
 # RL Defined in an LLM Context
 
-Language modeling fits naturally into a reinforcement learning framework:
+Language modeling fits naturally into a reinforcement learning paradigm:
 
 - **Policy:** The rule (model weights) determining which token to output.  
 - **State:** The input context or prompt.  
