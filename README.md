@@ -1,6 +1,6 @@
 # Governing LLMs
 
-The AI systems being built today are poised to shape how knowledge is shared and how societies are organized in the near future.
+The AI systems being built today are poised to shape how knowledge is shared and how societies wil be organized in the near future.
 As researchers in machine learning, we have an opportunity (and a responsibility) to understand how these systems are currently designed and guided. How might we build more principled and inclusive approaches that draw on diverse perspectives (scientific, ethical, cultural, and institutional) to align large language models with societal values?
 
 Recent studies have [pointed to gaps](https://arxiv.org/pdf/2509.02464) between the intended behavior described in AI company specifications and the behavior observed in practice.
@@ -22,12 +22,37 @@ You can think of:
 - OpenAI relies on a [Model Spec](https://model-spec.openai.com/2025-02-12.html).
 - Anthropic has an [AI Constitution](https://constitutional.ai/#definition).
 1. **Supervised Fine-tuning (SFT):** Human annotators provide “gold standard” responses, and models imitate these responses.  
-2. **Reward Model Training:** The LLM generates two responses, and humans annotate which they prefer.  
-3. **Reinforcement Learning (RL):** The LLM learns from trial and error.  
+2. **Reward Model Training:** The LLM generates responses, and human annotators choose (or rank) which response they prefer. This is a supervised learning problem, typically a pairwise classification task; the objective is implemented through the Bradley--Terry (BT) model, which treats each preference as a probabilistic comparison.
+3. **Reinforcement Learning (RL):** The LLM is optimized to directly maximize the learned reward signal from the reward model. The model (policy) generates responses to prompts, receives a scalar reward from the reward model, and updates its parameters to increase the expected reward.
 4. **Prompting (In-context learning):** Prompts guide the model on what to output during inference.
 
 ![Post-training pipeline](imgs/post_training_diagram.jpg)  
 *Image credit: [1]*
+
+---
+
+# Human-Preference Data Collection + SFT
+
+![Osst](imgs/Oasst.jpg)  
+*Image credit: [3]*
+
+![length-correlation](imgs/length-correlation.jpg)  
+*Image credit: [3]*
+
+![difficult-training](imgs/difficult-training.jpg)  
+*Image credit: [3]*
+
+During SFT, we are training the model to imitate human-annotated response.
+
+SFT datasets are much, much smaller (100 to 1,000,000x [8]) compared to pretraining corpora. So, they mostly adjust surface behavior (e.g., style, format) rather than fundamentally reshaping the model’s representations.
+
+What is the model actually learning in the example above?
+1. Associate "Manopsomy" with this citation?
+2. Learn to insert a reference at the end of an output when it sees a niche term it does not know (aka hallucinate)?
+
+Hallucination and Behavior cloning: When a model doesn’t have the relevant knowledge needed to answer a prompt already encoded in its pretrained representations, supervised fine-tuning can inadvertently teach it to pretend to know the answer by imitating the human- or AI-annotated label.
+
+Insert: RLHF. The idea is to adjust the behavior using the model-generations itself (aka, what the model already knows).
 
 ---
 
@@ -40,9 +65,6 @@ Language modeling fits naturally into a reinforcement learning framework:
 - **Action:** The next token chosen by the model.  
 - **Reward:** The score assigned to an output (often from a reward model).  
 - **Value:** The expected total reward from a state when following a policy.
-
-![Simple RL diagram](imgs/simple_rl_diagram.png)  
-*Image credit: [5]*
 
 ---
 
@@ -173,17 +195,17 @@ $$
 
 ---
 
-# The Low Signal-to-Noise Problem
+# What is the model actually learning?
 
-Some studies have shown that much of the RLHF signal can be explained by response length or surface features.  
-Thus, RLHF may generalize well primarily because of its *scale* — not necessarily because the feedback signal is deeply informative.  
+It turns out that much of the signal in these preference datasets can be explained by response length or surface features.  
+RLHF may generalize well primarily because of its *scale* — not necessarily because the feedback signal is deeply informative.  
 If we wish to align models on *nuanced behaviors* (e.g., reducing sycophancy), we need richer, more diagnostic training signals.
-
----
 
 ## RLVR (Reinforcement Learning with Verifiable Rewards)
 
-Even **RLVR** (which uses verifiable, rule-based rewards) suffers from low signal-to-noise, illustrating how difficult it is to construct meaningful alignment objectives.
+Even **RLVR** (which uses verifiable, rule-based rewards) suffers from low signal-to-noise.
+[Shao et al.](https://arxiv.org/abs/2506.10947?) (2025) find that one can do RLVR on Qwen2.5-Math models with completely random or incorrect rewards, and still get massive math benchmark gains.
+illustrating how difficult it is to construct meaningful alignment objectives.
 
 
 ---
@@ -201,5 +223,6 @@ Inverse Constitutional Alignment:
 5. [An Introduction to Reinforcement Learning for Beginners — AlmaBetter Blog](https://www.almabetter.com/bytes/articles/reinforcement-learning)  
 6. [Direct Preference Optimization (DPO) — Cameron Wolfe’s Blog](https://cameronrwolfe.substack.com/p/direct-preference-optimization)
 7. [Stanford CS336 Lecture 16: Alignment — RL 1](https://web.stanford.edu/class/cs336/)  
+8. [InstructGPT](https://proceedings.neurips.cc/paper_files/paper/2022/file/b1efde53be364a73914f58805a001731-Paper-Conference.pdf)
 
  
