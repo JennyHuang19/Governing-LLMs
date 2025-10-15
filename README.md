@@ -70,7 +70,7 @@ However, large updates can easily destabilize training, making naive policy grad
 **PPO** refines policy gradients by introducing a *clipped surrogate objective* that limits how far the new policy can move from the old one:
 
 $$
-L^{\text{PPO}}(\theta) = \mathbb{E}_t\Big[ \min\big( r_t(\theta)A_t,\; \text{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon)A_t \big) \Big],\quad r_t(\theta) = \frac{\pi_\theta(a_t|s_t)}{\pi_{\text{old}}(a_t|s_t)}
+L^{\text{PPO}}(\theta) = \mathbb{E}_t\Big[ \min\big( r_t(\theta)A_t, \text{clip}(r_t(\theta), 1-\epsilon, 1+\epsilon)A_t \big) \Big],\quad r_t(\theta) = \frac{\pi_\theta(a_t|s_t)}{\pi_{\text{old}}(a_t|s_t)}
 $$
 
 The clipping ensures updates stay within a safe ''trust region'', allowing multiple gradient epochs on the same data.  
@@ -99,7 +99,7 @@ In this section, we will look at the intuition behind **Direct Preference Optimi
 
 ### i. From RLHF to DPO
 
-In RLHF, the objective is to train a model to maximize expected reward under a KL constraint that keeps it close to a reference model (often the SFT model):
+In RLHF the objective is to train a model to maximize expected reward under a KL constraint that keeps it close to a reference model (often the SFT model):
 
 $$
 \max_{\pi_\theta} \mathbb{E}_{x \sim D,\, y \sim \pi_\theta(y | x)} \Big[ r(x, y) \Big] - \beta \mathbb{D}_{\text{KL}}\big(\pi_\theta(y | x) || \pi_{\text{ref}}(y | x)\big)
@@ -123,7 +123,7 @@ where $Z_\beta(x)$ is a normalization constant.
 The optimal policy (i) reweights the reference model’s probabilities (ii) shifts more mass toward higher-reward outputs with (iii) $\beta$ controlling for how strong this shift is.
 
 
-### iii. Pairwise Preferences and the Bradley–Terry Model
+### iii. Pairwise Preferences and the Bradley--Terry Model
 
 Human feedback is often in the form of a pair of model completions $(y_w, y_l)$, where one is preferred over the other.
 
