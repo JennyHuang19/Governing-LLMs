@@ -33,13 +33,13 @@ You can think of:
 
 # Human-Preference Data Collection + SFT
 
-![Osst](imgs/Oasst.jpg)  
+![Osst](imgs/Oasst.pdf)  
 *Image credit: [3]*
 
-![length-correlation](imgs/length-correlation.jpg)  
+![length-correlation](imgs/length-correlation.pdf)  
 *Image credit: [3]*
 
-![difficult-training](imgs/difficult-training.jpg)  
+![difficult-training](imgs/difficult-training.pdf)  
 *Image credit: [3]*
 
 During SFT, we are training the model to imitate human-annotated response.
