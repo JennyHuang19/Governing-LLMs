@@ -25,7 +25,8 @@ You can think of:
 
 0. **Define a rubric of ideal behaviors:** e.g., follow instructions, be honest and helpful, avoid harmful content.  
 - OpenAI relies on a [Model Spec](https://model-spec.openai.com/2025-02-12.html).
-- Anthropic has an [AI Constitution](https://constitutional.ai/#definition).
+- Anthropic (see [Constitutional AI paper](https://arxiv.org/pdf/2212.08073)) and Google (see [3]) use similar ideal-behavior rubrics.
+
 1. **Supervised Fine-tuning (SFT):** Human annotators provide “gold standard” responses, and models imitate these responses.  
 2. **Reward Model Training:** The LLM generates responses, and human annotators choose (or rank) which response they prefer. This is a supervised learning problem, typically a pairwise classification task; the objective is implemented through the Bradley--Terry (BT) model, which treats each preference as a probabilistic comparison.
 3. **Reinforcement Learning (RL):** The LLM is optimized to directly maximize the learned reward signal from the reward model. The model (policy) generates responses to prompts, receives a scalar reward from the reward model, and updates its parameters to increase the expected reward.
