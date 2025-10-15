@@ -27,7 +27,7 @@ You can think of:
 - OpenAI relies on a [Model Spec](https://model-spec.openai.com/2025-02-12.html).
 - Anthropic (see [Constitutional AI paper](https://arxiv.org/pdf/2212.08073)) and Google (see [3]) use similar ideal-behavior rubrics.
 
-1. **Supervised Fine-tuning (SFT):** Human annotators provide “gold standard” responses, and models imitate these responses. *In Anthropic's Constitutional AI method, this step is replaced by sampling from the initial model, then generating self-critiques and revisions according to a principle in the Constitution, then finetune the original model on revised responses.
+1. **Supervised Fine-tuning (SFT):** Human annotators provide “gold standard” responses, and models imitate these responses. *In Anthropic's Constitutional AI method, this step is replaced by sampling from the LLM, then generating self-critiques and revisions according to a principle in the Constitution, and then finetuning the LLM on revised responses.
 2. **Reward Model Training:** The LLM generates responses, and human annotators choose (or rank) which response they prefer. This is a supervised learning problem, typically a pairwise classification task; the objective is implemented through the Bradley--Terry (BT) model, which treats each preference as a probabilistic comparison.
 3. **Reinforcement Learning (RL):** The LLM is optimized to directly maximize the learned reward signal from the reward model. The model (policy) generates responses to prompts, receives a scalar reward from the reward model, and updates its parameters to increase the expected reward.
 4. **Prompting (In-context learning):** Prompts guide the model on what to output during inference.
