@@ -201,19 +201,18 @@ It turns out that much of the signal in these preference datasets can be explain
 RLHF may generalize well primarily because of its *scale* — not necessarily because the feedback signal is deeply informative.  
 If we wish to align models on *nuanced behaviors* (e.g., reducing sycophancy), we need richer, more diagnostic training signals.
 
-## RLVR (Reinforcement Learning with Verifiable Rewards)
+## More-Recent Directions + Food-for-thought.
 
-Even **RLVR** (which uses verifiable, rule-based rewards) suffers from low signal-to-noise.
+RLVR (Reinforcement Learning with Verifiable Rewards): Learn from a verifiable signal (e.g., correct answer on a math question, unit tests on code.). However, even this approach is hackable.
 [Shao et al.](https://arxiv.org/abs/2506.10947?) (2025) find that one can do RLVR on Qwen2.5-Math models with completely random or incorrect rewards, and still get massive math benchmark gains.
 illustrating how difficult it is to construct meaningful alignment objectives.
 
+Inverse Constitutional AI ([Findeis et al. 2025](https://arxiv.org/abs/2406.06560)): reverse-engineer the underlying principles, the ''constitution'', that explain human or AI annotator preferences. Instead of using fixed principles to guide model behavior (as in Constitutional AI), here we learn a concise set of rules that best reconstruct the observed preference annotations.
 
----
+[Deliberative Alignment](https://openai.com/index/deliberative-alignment/): Have reasoning models reflect on user prompts, identify relevant text from OpenAI’s internal policies, and draft safer responses.
 
-# Ways forward
+[Collective Alignment Projects](https://openai.com/index/collective-alignment-aug-2025-updates/): carefully-designed public surveys about agreement with OpenAI's Model Spec.
 
-Pluralistic Alignment: 
-Inverse Constitutional Alignment: 
 
 # Sources
 1. [Proximal Policy Optimization (PPO) — Cameron Wolfe’s Blog](https://cameronrwolfe.substack.com/p/proximal-policy-optimization-ppo) 
