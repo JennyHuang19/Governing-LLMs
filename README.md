@@ -33,13 +33,13 @@ You can think of:
 
 # Human-Preference Data Collection + SFT
 
-![Osst](imgs/Oasst.pdf)  
+![Osst](imgs/Oasst.png)  
 *Image credit: [3]*
 
-![length-correlation](imgs/length-correlation.pdf)  
+![length-correlation](imgs/length-correlation.png)  
 *Image credit: [3]*
 
-![difficult-training](imgs/difficult-training.pdf)  
+![difficult-training](imgs/difficult-training.png)  
 *Image credit: [3]*
 
 During SFT, we are training the model to imitate human-annotated response.
@@ -52,7 +52,7 @@ What is the model actually learning in the example above?
 
 Hallucination and Behavior cloning: When a model doesn’t have the relevant knowledge needed to answer a prompt already encoded in its pretrained representations, supervised fine-tuning can inadvertently teach it to pretend to know the answer by imitating the human- or AI-annotated label.
 
-Insert: RLHF. The idea is to adjust the behavior using the model-generations itself (aka, what the model already knows).
+**Insert**: Reinforcement Learning from Human Feedback. The idea is to adjust the behavior using the model-generations itself (aka, what the model already knows).
 
 ---
 
