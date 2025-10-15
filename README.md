@@ -1,7 +1,7 @@
 # Governing LLMs
 
 The AI systems being built today are poised to shape how knowledge is shared and how societies wil be organized in the near future.
-As researchers in machine learning, we have an opportunity (and a responsibility) to understand how these systems are currently designed and guided. How might we build more principled and inclusive approaches that draw on diverse perspectives (scientific, ethical, cultural, and institutional) to align large language models with societal values?
+We have a responsibility to understand how these systems are currently designed and guided. How might we build more principled and inclusive approaches that draw on diverse perspectives (scientific, ethical, cultural, and institutional) to align large language models with societal values?
 
 Recent studies have [pointed to gaps](https://arxiv.org/pdf/2509.02464) between the intended behavior described in AI company specifications and the behaviors observed in practice (i.e., in the context of prompts and responses).
 
